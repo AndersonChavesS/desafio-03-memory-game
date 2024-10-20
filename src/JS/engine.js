@@ -33,9 +33,25 @@ function handleClick() {
     this.classList.add('boxOpen');
     openCards.push(this);
   }
-  if (openCards.lenght === 2) {
+  if (openCards.length === 2) {
     setTimeout(checkMatch, 500);
   }
 }
 
-function checkMatch() {}
+function checkMatch() {
+  if (openCards[0].innerHTML === openCards[1].innerHTML) {
+    openCards[0].classList.add('boxMatch');
+    openCards[1].classList.add('boxMatch');
+  }
+  if (openCards[0].innerHTML !== openCards[1].innerHTML) {
+    openCards[0].classList.remove('boxOpen');
+    openCards[1].classList.remove('boxOpen');
+  }
+  openCards = [];
+
+  if (document.querySelectorAll('.boxMatch').length === emojis.length) {
+    setTimeout(() => {
+      alert('Você venceu!');
+    }, 500);
+  }
+}

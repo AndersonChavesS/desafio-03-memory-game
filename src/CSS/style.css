@@ -90,6 +90,7 @@ body {
 }
 
 .item::after {
+  opacity: 0.8;
   content: '';
   position: absolute;
   inset: 0;
@@ -104,7 +105,7 @@ body {
   transform: rotateY(0deg);
 }
 
-.boxOpen:after,
+.boxOpen::after,
 .boxMatch::after {
   transform: rotateY(180deg);
 }
