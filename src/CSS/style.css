@@ -17,7 +17,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
   gap: 30px;
   background-position: center;
@@ -28,11 +28,63 @@ body {
 
 .container h2 {
   font-size: 6.4rem;
+  font-weight: 700;
   color: #ff0000;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.5rem;
-  margin: 30px auto 0;
+  padding: 10px 20px;
+  text-shadow: #ff0000 0 0 30px;
+}
+
+.game {
+  width: 50em;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
+.item {
+  position: relative;
+  width: 2.4em;
+  height: 3.6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #fdeff9;
+  background: linear-gradient(#ff0000 20%, #dd8282 100%);
+  font-size: 4.5rem;
+  opacity: 0.9;
+
+  transform: rotateY(180deg);
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+.item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transition: 0.5s;
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+  background-color: #ff0000;
+  background: linear-gradient(#ff0000 20%, #dd8282 100%);
+}
+
+.item.boxOpen {
+  transform: rotateY(0deg);
+}
+
+.boxOpen::after,
+.boxMatch::after {
+  transform: rotateY(180deg);
 }
 
 .reset {
@@ -59,53 +111,49 @@ body {
   background-color: #03bcdc;
 }
 
-.game {
-  width: 50em;
-  height: 55em;
-  display: flex;
-  justify-content: center;
-  justify-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  transform-style: preserve-3d;
-  perspective: 500px;
+/* Mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px 20px;
+  }
+
+  .container h2 {
+    font-size: 4.5rem;
+  }
+
+  .game {
+    width: 40em;
+    height: 65%;
+  }
+
+  .item {
+    width: 2.5em;
+    height: 3.2em;
+    font-size: 3rem;
+  }
+
+  .reset {
+    font-size: 2rem;
+  }
 }
 
-.item {
-  position: relative;
-  width: 2.4em;
-  height: 2.6em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  border: 1px solid #fdeff9;
-  background: linear-gradient(#ff0000 20%, #dd8282 100%);
-  font-size: 4.5rem;
-  opacity: 0.9;
+/* mobile */
+@media (max-width: 425px) {
+  .container {
+    padding: 0px 20px;
+  }
 
-  transform: rotateY(180deg);
-  transition: transform 0.5s;
-  cursor: pointer;
-}
+  .container h2 {
+    font-size: 3.5rem;
+  }
 
-.item::after {
-  opacity: 0.8;
-  content: '';
-  position: absolute;
-  inset: 0;
-  transition: 0.5s;
-  transform: rotateY(0deg);
-  backface-visibility: hidden;
-  background-color: #ff0000;
-  background: linear-gradient(#ff0000 20%, #dd8282 100%);
-}
+  .item {
+    width: 3em;
+    height: 4em;
+    font-size: 2.5rem;
+  }
 
-.item.boxOpen {
-  transform: rotateY(0deg);
-}
-
-.boxOpen::after,
-.boxMatch::after {
-  transform: rotateY(180deg);
+  .reset {
+    font-size: 1.5rem;
+  }
 }

@@ -29,12 +29,13 @@ for (let i = 0; i < emojis.length; i++) {
 }
 
 function handleClick() {
+  sounds('flip-card');
   if (openCards.length < 2) {
     this.classList.add('boxOpen');
     openCards.push(this);
   }
   if (openCards.length === 2) {
-    setTimeout(checkMatch, 500);
+    setTimeout(checkMatch, 800);
   }
 }
 
@@ -50,8 +51,15 @@ function checkMatch() {
   openCards = [];
 
   if (document.querySelectorAll('.boxMatch').length === emojis.length) {
+    sounds('you-win');
     setTimeout(() => {
-      alert('Você venceu!');
+      alert('=) SHOW!!\nVocê Venceu!');
     }, 500);
   }
+}
+
+function sounds(sound) {
+  let audio = new Audio(`./src/assets/audios/${sound}.mp3`);
+  audio.play();
+  audio.volume = 0.2;
 }
